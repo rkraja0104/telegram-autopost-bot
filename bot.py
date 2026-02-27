@@ -1,5 +1,6 @@
 import asyncio
-from telegram import Bot
+from pyrogram import Client
+import asyncio
 
 TOKEN = "8797113384:AAHVgv1dgPY_YUspuCPDT1n-ZihBCAsGRMM"
 
@@ -12,7 +13,7 @@ DESTINATION_CHANNELS = [
     -1003224337028
 ]
 
-bot = Bot(token=TOKEN)
+bot = Client("my_bot", bot_token=TOKEN)
 
 async def forward_posts():
     while True:
@@ -29,4 +30,8 @@ async def forward_posts():
 
         await asyncio.sleep(3600)
 
-asyncio.run(forward_posts())
+async def main():
+    async with bot:
+        await forward_posts()
+
+asyncio.run(main())
